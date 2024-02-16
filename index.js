@@ -22,6 +22,9 @@ app.post('/api/products', (req, res) => {
     res.status(201).json(newProduct)
 })
 
+app.get('/api/products', (req, res) => {
+    res.json(products)
+})
 
 app.listen(port, () => {
     console.log(`listening at http://localhost:${port}`);
