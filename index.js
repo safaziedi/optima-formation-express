@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const mongoose = require('mongoose');
+
 const port = 3000;
 //Charger les données
 const products = require('./data.js')
@@ -64,6 +66,23 @@ app.delete('/api/products/:productID', (req, res) => {
     res.status(200).json('Product deleted')
 })
 
-app.listen(port, () => {
-    console.log(`listening at http://localhost:${port}`);
+
+
+/*
+Authentication
+*/
+
+
+/*
+DataBase Connection
+*/
+mongoose.connect('mongodb://127.0.0.1:27017/optima')
+.then(() => {
+    /* start server only when we have valid connection */
+    app.listen(port,()=>{
+        console.log(`server running on http://localhost:${port}`);
+    })
 })
+.catch((error) => {
+      console.error('Error connecting to MongoDB:', error);
+});
