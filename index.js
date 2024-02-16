@@ -53,6 +53,17 @@ app.put('/api/products/:productID', (req, res) => {
 })
 
 
+
+app.delete('/api/products/:productID', (req, res) => {
+    const id = Number(req.params.productID)
+    const index = products.findIndex(product => product.id === id)
+        if (index === -1) {
+        return res.status(404).send('Product not found')
+    }
+    products.splice(index,1)
+    res.status(200).json('Product deleted')
+})
+
 app.listen(port, () => {
     console.log(`listening at http://localhost:${port}`);
 })
