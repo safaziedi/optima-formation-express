@@ -1,12 +1,30 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 
 const port = 3000;
 //Charger les données
 const products = require('./data.js')
 
-//les api 
+/*
+MIDDELWAREs
+*/
+app.use(express.json());//parse json data which comes from the frontend to the backend //app.use(bodyParser.json()) deprecated
+app.use(morgan('tiny'));//logs pour capturer des informations sur les requêtes HTTP entrantes 
+app.disable('x-powered-by');//pour réduire les informations divulguées dans les en-têtes HTTP et améliorer la sécurité globale de votre application web
+
+
+/*
+LES API
+ */
+
+// Use the productRoutes for the '/product' path
+// app.use('/product', productRoutes);
+const userRoutes = require('./routes/UserRoutes');
+app.use('/user', userRoutes);
+
+
 app.get('/', (req, res) => {
     res.send('Hello OPTIMA')
 })

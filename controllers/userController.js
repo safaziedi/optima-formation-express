@@ -42,7 +42,7 @@ const UserController = {
           userId: user.id,
           role: user.role
         },
-          process.env.secretOrPrivateKey,
+          "oknhgvgijnkazertyuioqsdfghjkl", //secret key
           {
             expiresIn: '2d'  //1d = 1 day , w = week , m= month, h=hour ...
           }
