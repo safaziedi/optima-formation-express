@@ -25,11 +25,17 @@ const userRoutes = require('./routes/UserRoutes');
 app.use('/user', userRoutes);
 
 
+
+/*DEFAULT URL */
 app.get('/', (req, res) => {
     res.send('Hello OPTIMA')
 })
 
 
+
+/*
+CRUD
+ */
 app.use(express.json()) // parse json body content
 
 app.post('/api/products', (req, res) => {
